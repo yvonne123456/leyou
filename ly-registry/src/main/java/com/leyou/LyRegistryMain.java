@@ -9,7 +9,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 public class LyRegistryMain {
     public static void main(String[] args) {
         SpringApplication.run(LyRegistryMain.class);
-        System.out.println(("----注册中心启动-----"));
+        System.out.println(("-----注册中心启动-----"));
 
     }
 }
