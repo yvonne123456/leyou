@@ -14,5 +14,7 @@ public interface CategoryService extends IService<Category> {
     List<CategoryDTO> queryCategoryByIds(List<Long> ids);
 
 
-    List<CategoryDTO> queryCategoryByBrandId(Long brandId);
+
+
+//    List<CategoryDTO> queryCategoryByBrandId(Long brandId);
 }
