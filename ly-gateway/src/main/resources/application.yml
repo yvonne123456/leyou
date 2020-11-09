@@ -60,6 +60,12 @@ spring:
         predicates:
         - Path=/item/**
 
+
+
+      - id: item-service # 授权微服务
+        uri: lb://auth-service
+        predicates:
+        - Path=/auth/**
 logging:
   level:
     com.leyou: debug
