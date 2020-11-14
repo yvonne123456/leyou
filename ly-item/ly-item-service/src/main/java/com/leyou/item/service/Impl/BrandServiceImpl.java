@@ -27,11 +27,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
     @Autowired
     private BrandService brandService;
 
-    /**
-     * @param page
-     * @param rows
-     * @return list
-     */
+
     @Override
     public PageDTO<BrandDTO> queryPageBrand(Integer page, Integer rows, String key) {
 
@@ -51,9 +47,6 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
         return new PageDTO<BrandDTO>(queryPage.getTotal(), queryPage.getPages(), BrandDTO.convertEntityList(list));
     }
 
-    /**
-     * @param brandDTO
-     */
     @Override
     public void addBrand(BrandDTO brandDTO) {
         Brand brand = brandDTO.toEntity(Brand.class);
@@ -71,10 +64,6 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
     }
 
 
-    /**
-     *
-     * @param brandDTO
-     */
     @Override
     public void updateBranById(BrandDTO brandDTO) {
         //dto装换po
@@ -84,18 +73,13 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
         this.categoryBrandService.remove(new QueryWrapper<CategoryBrand>().eq("brand_id",brand.getId()));
     }
 
-    /**
-     *
-     * @param id
-     * @return 根据id查询品牌
-     */
+
     @Override
     public BrandDTO queryBrandById(Long id) {
 
         return new BrandDTO(getById(id));
 
     }
-//
     @Override
     public List<BrandDTO> queryBrandByIds(List<Long> ids) {
         return BrandDTO.convertEntityList(this.listByIds(ids));
@@ -106,9 +90,14 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
 
         this.removeById(id);
 
-        this.categoryBrandService.remove(new QueryWrapper<CategoryBrand>().eq("brand_id",id));
+        this.categoryBrandService.remove(new QueryWrapper<CategoryBrand>()
+                .eq("brand_id",id));
+    }
 
-
+    @Override
+    public List<BrandDTO> queryBrandByCategory(Long id) {
+        List<Brand> list = getBaseMapper().queryBrandByCategory(id);
+        return BrandDTO.convertEntityList(list);
     }
 
 

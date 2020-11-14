@@ -39,10 +39,8 @@ public class BrandController {
     }
     //根据分类id查询品牌
     @GetMapping("/of/category")
-    public ResponseEntity<List<BrandDTO>> queryBrandByCategoryById(@RequestParam("id") Long cid){
-
-        return ResponseEntity.ok(this.categoryBrandService.queryBrandByCategoryById(cid));
-
+    public ResponseEntity<List<BrandDTO>> queryBrandByCategory(@RequestParam("id") Long id){
+        return ResponseEntity.ok(brandService.queryBrandByCategory(id));
     }
     //更新品牌
     @PutMapping

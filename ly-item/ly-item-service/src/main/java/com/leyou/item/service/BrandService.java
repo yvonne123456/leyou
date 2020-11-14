@@ -21,4 +21,6 @@ public interface BrandService extends IService<Brand> {
    List<BrandDTO> queryBrandByIds(List<Long> ids);
 
    void DeleteBrandById(Long id);
+
+   List<BrandDTO> queryBrandByCategory(Long id);
 }

@@ -3,6 +3,7 @@ package com.leyou.item.service.Impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.leyou.item.dto.BrandDTO;
 import com.leyou.item.dto.CategoryDTO;
+import com.leyou.item.entity.Brand;
 import com.leyou.item.entity.CategoryBrand;
 import com.leyou.item.mapper.CategoryBrandMapper;
 import com.leyou.item.service.BrandService;
@@ -24,31 +25,26 @@ public class CategoryBrandServiceImpl extends ServiceImpl<CategoryBrandMapper, C
 
     @Autowired
 
-    private BrandService brandService;
+
     /**
-     *
      * @param bid
      * @return categoryIds
      */
     @Override
     public List<CategoryDTO> queryCategoryByBrandId(Long bid) {
 
-       List<Long> categoryIds = query().eq("brand_id", bid)
-               .list().stream()
-               .map(CategoryBrand::getCategoryId)
-               .collect(Collectors.toList());
-        return  CategoryDTO.convertEntityList(this.categoryService.listByIds(categoryIds));
-
-    }
-
-    @Override
-    public List<BrandDTO> queryBrandByCategoryById(Long cid) {
-        List<Long> brands = query().eq("brand_id", cid)
+        List<Long> categoryIds = query().eq("brand_id", bid)
                 .list().stream()
                 .map(CategoryBrand::getCategoryId)
                 .collect(Collectors.toList());
-        return  BrandDTO.convertEntityList(this.brandService.listByIds(brands));
+        return CategoryDTO.convertEntityList(this.categoryService.listByIds(categoryIds));
 
     }
 
-}
+
+
+    }
+
+//            List<Brand> list = getBaseMapper().queryBrandByCategoryById(cid);
+//            BrandDTO.convertEntityList(list);
+
